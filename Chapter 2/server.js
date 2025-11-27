@@ -14,17 +14,33 @@ app.use(express.urlencoded({ extended: true })); //Once you hit submit on your f
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json()); // same as with python, by making it a json file, we make it into a string that can be used.
 
-app.post("/calculate", (req, res) => {
-  const height = parseFloat(req.body.height); // here we convert it into a floating point number. That means the data can be used as a number not a just a string
+app.post('/calculate', (req, res) => {
+  const height = parseFloat(req.body.height);
   const weight = parseFloat(req.body.weight);
-  // const means we are making a var that cannot be changed once it is set
-  
   const bmi = weight / (height * height);
-
-  res.send(`
-    <p>Height of ${height} & Weight of ${weight} gives you BMI of ${bmi.toFixed(2)}</p> 
-  `); // this sends the captured data in the .post section and now outputs it. 
-}); // "bmi.toFixed(2)" selects only 2 decimal points 
+  
+  if (bmi <= 18.5) {
+    res.send(`
+      <p>Height of ${height} & Weight of ${weight} gives you BMI of <span style="color:gray;"><b>${bmi.toFixed(2)}</b></span></p>
+      <p><b> (Underweight)</span></p>
+    `);
+  } else if (bmi < 25) {
+    res.send(`
+      <p>Height of ${height} & Weight of ${weight} gives you BMI of <span style="color:green;"><b>${bmi.toFixed(2)}</b></span></p>
+      <p><b> (Normal weight)</span></p>
+    `);
+  } else if (bmi < 30) {
+    res.send(`
+      <p>Height of ${height} & Weight of ${weight} gives you BMI of <span style="color:orange;"><b>${bmi.toFixed(2)}</b></span></p>
+      <p><b> (Overweight)</span></p>
+    `);
+  } else {
+    res.send(`
+      <p>Height of ${height} & Weight of ${weight} gives you BMI of <span style="color:red;"><b>${bmi.toFixed(2)}</b></span></p>
+      <p><b> (OBESE)</b></span></p>
+    `);
+  }
+});
 
 // Start the server
 app.listen(3000, () => {
