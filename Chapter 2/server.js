@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true })); //Once you hit submit on your f
 app.use(express.json()); // same as with python, by making it a json file, we make it into a string that can be used.
 
 app.post('/calculate', (req, res) => {
-  const height = parseFloat(req.body.height);
+  const height = parseFloat(req.body.height); //parseFloat converts strings into a floating number, decimal points
   const weight = parseFloat(req.body.weight);
   const bmi = weight / (height * height);
   
@@ -47,3 +47,9 @@ app.listen(3000, () => {
   // When we do this, this is to access the site, so it would be http://localhost:3000/ if you change the number here it would route there
   console.log("Server listening on port 3000");
 });
+
+// Summary
+
+// This Node.js script sets up a basic Express server that serves static files from a public folder and can parse both URL-encoded form data 
+// and JSON. It defines a POST route at /calculate, which reads height and weight from the request body, calculates the user’s BMI, and then uses if statement to give certain outputs
+// responds with an HTML snippet displaying the result. The server listens on port 3000.

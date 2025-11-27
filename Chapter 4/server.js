@@ -14,8 +14,6 @@ app.use(express.urlencoded({ extended: true })); //Once you hit submit on your f
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json()); // same as with python, by making it a json file, we make it into a string that can be used.
 
-let currentPrice = 60;
-
 // Handle POST request for contacts search
 app.post("/search", async (req, res) => {
   const searchTerm = req.body.search.toLowerCase(); //this 'search' is the name inside of the input box. We store that info into the const
