@@ -57,3 +57,28 @@ app.listen(3000, () => {
   // When we do this, this is to access the site, so it would be http://localhost:3000/ if you change the number here it would route there
   console.log("Server listening on port 3000");
 });
+
+
+/*
+CODE SUMMARY:
+This Express.js server handles email validation with real-time feedback using HTMX.
+
+Server Setup:
+- Initializes Express application
+- Serves static files from 'public' folder (images, CSS, fonts)
+- Parses form data (express.urlencoded) to handle special characters
+- Parses JSON data for API requests
+
+Email Validation Route (/email):
+- Receives POST requests when user types in email field
+- Uses regex pattern to validate email format (checks for @ symbol, domain, etc.)
+- Returns HTML with Bootstrap styling showing:
+  * Green success alert if email is valid
+  * Red error alert if email is invalid
+- Preserves user's input in the field
+- Uses HTMX attributes to swap content without page reload
+
+Server Startup:
+- Listens on port 3000 (access at http://localhost:3000)
+- Logs confirmation message when server starts
+*/

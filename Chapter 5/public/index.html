@@ -51,3 +51,28 @@
     ></script>
   </body>
 </html>
+
+
+<!--
+CODE SUMMARY:
+This HTML page creates a simple login form with real-time email validation using HTMX and Bootstrap.
+
+Head Section:
+- Includes HTMX library for dynamic content updates without page refresh
+- Includes Bootstrap CSS for styling (forms, buttons, alerts)
+- Configures HTMX to allow requests
+
+Form Structure:
+- Email input field with HTMX attributes:
+  * hx-post="/email" sends data to server on input change
+  * hx-target="this" specifies where to place the response
+  * hx-swap="outerHTML" replaces entire div with server response
+- Password input field (basic, no validation)
+- Submit button styled with Bootstrap
+
+How It Works:
+- When user types in email field, HTMX automatically sends POST request
+- Server validates email and returns updated HTML
+- Page updates dynamically to show validation message (no page reload)
+- Bootstrap provides professional styling for all form elements
+-->

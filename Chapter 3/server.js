@@ -26,3 +26,20 @@ app.listen(3000, () => {
   // When we do this, this is to access the site, so it would be http://localhost:3000/ if you change the number here it would route there
   console.log("Server listening on port 3000");
 });
+
+/*
+CODE SUMMARY:
+Express server that simulates a live Bitcoin price tracker.
+
+Setup:
+- Serves static files from 'public' folder
+- Parses form data and JSON
+
+Price Route (/get-price):
+- Starts at R60
+- Randomly fluctuates price up or down by R1 each request
+- Returns formatted price with "R" currency symbol and 2 decimals
+- Called automatically every 2 seconds by HTMX from the HTML page
+
+Server runs on port 3000 (http://localhost:3000)
+*/

@@ -47,3 +47,10 @@ app.listen(3000, () => {
   // When we do this, this is to access the site, so it would be http://localhost:3000/ if you change the number here it would route there
   console.log("Server listening on port 3000");
 });
+
+// Summary
+
+// This JavaScript file sets up an Express server that serves static files and parses form and JSON data. It defines a POST /search endpoint 
+// that receives a search term from the client, fetches a list of users from the external API jsonplaceholder.typicode.com, filters the users 
+// by matching the search term against their names or emails, and returns an HTML string of table rows representing the matched users. 
+// The server listens on port 3000
