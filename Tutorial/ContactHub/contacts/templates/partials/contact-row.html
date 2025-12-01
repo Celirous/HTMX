@@ -1,0 +1,15 @@
+<tr id="contact-{{ contact.id }}">
+  <td>{{ contact.name }}</td>
+  <td>{{ contact.email }}</td>
+  <td>{{ contact.created_at|date:"M d, Y" }}</td>
+  <td>
+    <form 
+      hx-post="{% url 'delete-contact' contact.id %}" 
+      hx-target="#contact-{{ contact.id }}" 
+      hx-swap="outerHTML"
+      class="inline">
+      {% csrf_token %}
+      <button class="btn btn-xs btn-error">Delete</button>
+    </form>
+  </td>
+</tr>

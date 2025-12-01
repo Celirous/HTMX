@@ -81,7 +81,7 @@ app.put("/user/:id", (req, res) => {
 });
 
 app.delete("/user/:id", (req, res) => {
-  res.send('');
+  res.send(`<h1> Data has been deleted</h1>`);
 });
 
 // Start the server
