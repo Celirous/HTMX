@@ -17,15 +17,25 @@ class ContactForm(forms.ModelForm):
             'placeholder': 'Email Address'
         })
     )
-
+    image = forms.FileField(
+        widget=forms.FileInput(attrs={
+            'class': 'file-input file-input-bordered w-full',
+            'accept': 'image/*'
+        }),
+        required=False,
+        help_text='Upload a profile image (JPG, PNG, GIF, WEBP)'
+    )
+    
     document = forms.FileField(
         widget=forms.FileInput(attrs={
             'class': 'file-input file-input-bordered w-full',
+            'accept': '.pdf,.doc,.docx,.txt'
         }),
-        required=False
+        required=False,
+        help_text='Upload a document (PDF, DOC, DOCX, TXT)'
     )
 
-    # def name(self):
+    # def clean_name(self):
     #     name = self.cleaned_data['name']
     #     # Check if email already exists for this user
     #     if name.startswith('X'):
@@ -35,14 +45,16 @@ class ContactForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         # Check if email already exists for this user
-        if Contact.objects.filter(user=self.initial.get('user'), email=email).exists():
+        if Contact.objects.filter(
+            user=self.initial.get('user'), 
+            email=email).exists():
             raise ValidationError("You already have a contact with this email address!")
         return email
 
     class Meta: 
         model = Contact
         fields = (
-        'name', 'email', 'document'
+        'name', 'email', 'image', 'document'
         )
 
 

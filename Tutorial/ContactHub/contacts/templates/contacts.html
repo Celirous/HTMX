@@ -3,7 +3,7 @@
 <div>
   <h1 class="text-4xl text-success mb-4">Contact Manager</h1>
 
-  <button class="btn btn-primay mb-4" onclick="contact_modal.showModal()">Add New Contact</button>
+  <button class="btn btn-success mb-4" onclick="contact_modal.showModal()">Add New Contact</button>
   {% include 'partials/add-contact-modal.html' %}
 
 
@@ -49,7 +49,14 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener('fail', () => {
-        document.getElementById('contact_modal').showModal();
+      document.getElementById('contact_modal').showModal();
+    });
+
+    document.body.addEventListener('success', () => {
+      let firstContactsDiv = document.querySelector('.no-contact-row')
+      if (firstContactsDiv) {
+        firstContactsDiv.remove();
+      }
     });
 });
 </script>

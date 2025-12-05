@@ -37,7 +37,7 @@ def search_contacts(request):
 
 @require_http_methods(['POST'])
 def create_contact(request):
-    form = ContactForm(request.POST, request.FILES, initial={'user': request.user})
+    form = ContactForm(request.POST, request.FILES, initial={'user' : request.user})
     if form.is_valid():
         contact = form.save(commit=False)
         contact.user = request.user
@@ -57,6 +57,7 @@ def create_contact(request):
 @login_required
 @require_http_methods(['POST'])
 def delete_contact(request, pk):
-    contact = get_object_or_404(Contact, id=pk)
+    contact = get_object_or_404(request.user.contacts, id=pk)
     contact.delete()
     return HttpResponse("")
+

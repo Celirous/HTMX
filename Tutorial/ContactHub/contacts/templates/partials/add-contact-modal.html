@@ -5,12 +5,15 @@
     <form
       hx-post="{% url 'create-contact' %}"
       hx-target="#contact-table-body"
-      hx-swap="afterb egin"
+      hx-swap="afterbegin"
       hx-on:success="contact_modal.close(); this.reset()"
+      enctype="multipart/form-data"
       class="mb-4"
+      
     >
       {% csrf_token %}
 
+      <!-- Name input field -->
       <div class="form-control w-full">
         <label class="form-control w-full">
           <span class="label-text">Name</span>
@@ -22,6 +25,7 @@
         {% endif %}
       </div>
 
+      <!-- Email input field -->
       <div class="form-control w-full">
         <label class="form-control w-full">
           <span class="label-text">Email</span>
@@ -33,25 +37,37 @@
         {% endif %}
       </div>
 
-      <div class="form-control w-full">
-        <label class="form-control w-full">
-          <span class="label-text">Document</span>
+      <!--  Image Upload Field  -->
+      <div class="form-control w-full mb-4">
+        <label class="label">
+          <span class="label-text">Profile Image (Optional)</span>
+          <span class="label-text-alt">JPG, PNG, GIF, WEBP</span>
+        </label>
+        {{ form.image }} {% if form.image.errors %}
+        <label class="label text-error"> {{ form.image.errors }} </label>
+        {% endif %}
+      </div>
+
+      <!-- Document Upload Field  -->
+      <div class="form-control w-full mb-4">
+        <label class="label">
+          <span class="label-text">Document (Optional)</span>
+          <span class="label-text-alt">PDF, DOC, DOCX, TXT</span>
         </label>
 
-        {{ form.document }} 
-        
-        {% if form.document.errors %}
+        {{ form.document }} {% if form.document.errors %}
         <label class="label text-error"> {{ form.document.errors }} </label>
-
         {% endif %}
       </div>
 
       <div class="modal-action">
-        <button type="button" class="btn" onclick="contact_modal.close()">
+        <button type="button" class="btn btn-error" onclick="contact_modal.close()">
           Cancel
         </button>
 
-        <button type="submit" class="btn btn-primay">Add Contact</button>
+        <button type="submit" class="btn btn-success">Add Contact</button>
+
+        {% include 'partials/spinner.html' %}
       </div>
     </form>
   </div>
